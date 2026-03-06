@@ -5,7 +5,8 @@ function List(){
                 ];
     // fruits.sort((a,b)=>a.name.localeCompare(b.name)); //Sort alphabetic
     fruits.sort((a,b)=>a.calories - b.calories);
-    const listItmes = fruits.map(fruit =><li key={fruit.id}>{fruit.name} : {fruit.calories}</li>)
+    const lowCalFruits = fruits.filter(fruit =>fruit.calories <100);
+    const listItmes = lowCalFruits.map(fruit =><li key={fruit.id}>{fruit.name} : {fruit.calories}</li>)
     return(<ul>{listItmes}</ul>);
 }
 export default List;
