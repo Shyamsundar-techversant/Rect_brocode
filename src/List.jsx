@@ -1,6 +1,11 @@
 function List(){
-    const fruits = ["a","b","c","d","e"];
-    const listItmes = fruits.map(fruit =><li>{fruit}</li>)
+    const fruits = [{id :1,name : "apple",calories : 95},
+                    {id:2,name : "orange",calories:45},
+                    {id:3,name : "banana",calories:345}
+                ];
+    // fruits.sort((a,b)=>a.name.localeCompare(b.name)); //Sort alphabetic
+    fruits.sort((a,b)=>a.calories - b.calories);
+    const listItmes = fruits.map(fruit =><li key={fruit.id}>{fruit.name} : {fruit.calories}</li>)
     return(<ul>{listItmes}</ul>);
 }
 export default List;
