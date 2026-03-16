@@ -21,3 +21,7 @@ function List(props){
     }
 console.log(List.propTypes);
 export default List;
+/* 
+React 19 (released mid-2024) completely removed the built-in PropTypes runtime checking system.
+The old Component.propTypes mechanism no longer triggers console warnings — even if you install and use the separate prop-types package.
+Warnings simply don't exist anymore in React ≥19 for propTypes. */
