@@ -1,28 +1,62 @@
+//Onchange Event handler -- evenet handler used primarly with form elements.
+//                          ex : <input>,<textarea>,<select>,<radio>,...
+//                          Triggers a function every time the value of the input changes.
+
 import React,{useState} from 'react';
 function MyComponent(){
-    // below name -- stateful variable, setName - setter function.
-    //when we use a setter funciton of a stateful variable it will trigger a rerender of the virtual dom. Normal variable don't.
-
     const [name,setName] = useState("Guest");
-    const [age,setAge] = useState(0) ;
-    const [isEmployed,setIsEmployed] = useState(false);
-    const updateName = () => {
-        setName("Spongebob")
+    const [quantity,setQuantity] = useState(0);
+    const [comment,setComment] = useState("");
+    const [payment,setPayment] = useState("UPI");
+    const [shipping,setShipping] = useState("");
+    function handleNameChange(event){
+        setName(event.target.value);
     }
-    const incrementAge = () =>{
-        setAge(age+1)
+    function handleQuantityChange(event){
+        setQuantity(event.target.value);
     }
-    const toggleEmployedStatus = () =>{
-        setIsEmployed(!isEmployed)
+    function handleCommentChange(event){
+        setComment(event.target.value);
     }
-    return(<div>
-        <p>Name : {name}</p>
-        <button onClick={updateName}>Set Name</button>
-        <p>Age : {age}</p>
-        <button onClick={incrementAge}>Increment Age</button>
-        <p>Isemployed : {isEmployed?"Yes":"No"}</p>
-        <button onClick={toggleEmployedStatus}>Toggle status</button>
-    </div>)
-
+    function handlePaymentMehtod(event){
+        setPayment(event.target.value);
+    }
+    function handleShippingChange(event){
+        setShipping(event.target.value);
+    }
+    return(
+        <div>
+            <input value = {name} onChange={handleNameChange}></input>
+            <p>Name : {name}</p>
+            <input value = {quantity} onChange = {handleQuantityChange} type = "number"></input>
+            <p>Quantity : {quantity}</p>
+            <textarea value = {comment} onChange = {handleCommentChange} 
+                placeholder = "Enter Delivery intructions">      
+            </textarea>
+            <p>Comment : {comment}</p>
+            <select value = {payment} onChange={handlePaymentMehtod}>
+                <option value = "">Select an option</option>
+                <option value = "ATM">ATM</option>
+                <option value = "VISA">VISA</option>
+                <option value = "UPI">UPI</option>
+            </select>
+            <p>Payment Method : {payment}</p>
+            <label>
+                <input type = "radio" value = "Pick Up"
+                    checked = {shipping === "Pick Up"}
+                    onChange={handleShippingChange}
+                ></input>
+                Pick Up
+            </label>
+            <label>
+                <input type = "radio" value = "Delivery"
+                    checked = {shipping === "Delivery"}
+                    onChange={handleShippingChange}
+                ></input>
+                Delivery
+            </label>
+            <p>Shipping : {shipping}</p>
+        </div>
+    )
 }
 export default MyComponent;
