@@ -10,21 +10,15 @@ function MyComponent(){
     const[count,setCount] = useState(0);
     function increment(){
         /* 
-            Suppose i want to increment by two, then 
-            
-            setCount(count+1);
-            setCount(count+1);
-            setCount(count+1);
+            When you call the setter function from useState (e.g. setCount), 
+            React doesn't update the state immediately. 
+            Instead:It queues the update
+            Multiple updates in the same event can be batched (combined)
+            When React finally applies them, it does so one after another
         */
-
-        /* 
-            But, 
-            React Uses the CURRENT state to calculate the NEXT state. After 
-            using a set functions , it do not trigger an update.
-            React batches together state updates for performance reasons.
-            NEXT state becomes CURRENT state after update.
-        */
-
+        setCount(c => c +1);
+        setCount(c => c +1);
+        setCount(c => c +1);
     }
 }
 export default MyComponent;
