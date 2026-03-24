@@ -16,7 +16,7 @@ function MyComponent(){
     function handleMakeChange(event){
         setCar(c => ({...car,make : event.target.value}))
     }   
-    function handleModelChange(){
+    function handleModelChange(event){
         setCar(c => ({...car,model : event.target.value}))
     }                      
     return(
