@@ -1,30 +1,29 @@
 import { useState } from "react";
 
 function MyComponent(){
-    const[car,setCar] = useState(
-                                    {
-                                        year:2024,
-                                        make:"Ford",
-                                        model:"Mustang",
-                                    }
-                                );
-    function handleYearChange(event){
-        // setCar({year:2025}); other properties are not updating.
-
-        setCar(c => ({...car,year:event.target.value})); //if we have an object with same name, js use the last by disgrading the first
-    }   
-    function handleMakeChange(event){
-        setCar(c => ({...car,make : event.target.value}))
-    }   
-    function handleModelChange(event){
-        setCar(c => ({...car,model : event.target.value}))
-    }                      
+    const[foods, setFoods] = useState(["Apple","Orange","Banana"]); 
+    function handleAddFood(){
+        const newFood = document.getElementById("foodInput").value;
+        document.getElementById("foodInput").value = "";
+        setFoods(f => [...foods,newFood]);
+    }
+    function handleRemoveFood(index){
+        setFoods(foods.filter((_ , i) => i !== index));
+    }
     return(
         <div>
-            <p>Your favorite car is : {car.year} {car.make} {car.model}</p>
-            <input type = "number" value = {car.year} onChange={handleYearChange}></input><br/>
-            <input type = "text" value = {car.make} onChange={handleMakeChange}></input><br/>
-            <input type = "text" value = {car.model} onChange={handleModelChange}></input>
+            <h2>List of Food</h2>
+            <ul>
+                {
+                    foods.map((food,index) => 
+                        <li key={index} onClick={() => handleRemoveFood(index)}>
+                            {food}
+                        </li>
+                    )
+                }
+            </ul>
+            <input type = "text" id="foodInput" placeholder="Enter Food Name"></input>
+            <button onClick={handleAddFood}>Add Food</button>
         </div>
     )
 }
