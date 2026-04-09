@@ -12,19 +12,24 @@
 import React , {useState,useEffect,useRef} from "react";
 
 function MyComponent(){
-    let [number,setNumber] = useState(0);
+    const ref = useRef(0);
 
     useEffect(() => {
        console.log("COMPONENT RENDERED"); 
     });
 
     function handleClick(){
-        setNumber(n => n+1);
+        ref.current ++ ;
+        console.log(ref.current);
     }
     return(
-        <button onClick={handleClick}>
-            Click me!
-        </button>
+        <div>
+            <button onClick={handleClick}>
+                Click me!
+            </button>
+            
+        </div>
+
     )
 }
 export default MyComponent;
